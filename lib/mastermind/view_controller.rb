@@ -1,4 +1,9 @@
 class ViewController
+  def display_rules(rules)
+    puts "Code Length is: #{rules.code_length}"
+    rules.print_available_colors
+  end
+
   def display_board(board)
     board.board.each do |level|
       p level.join(' ')

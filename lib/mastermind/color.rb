@@ -1,5 +1,5 @@
 class Color
-  attr_reader :code
+  attr_reader :code, :name
 
   def initialize(color_name, color_code)
     @name = color_name

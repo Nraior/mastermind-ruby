@@ -1,13 +1,13 @@
 require_relative 'game_controller'
 class Game
-  def initialize(color_pool)
-    @controller = GameController.new(color_pool, 12, 4)
-    @color_pool = color_pool
+  def initialize(rules)
+    @controller = GameController.new(rules)
     @players = []
   end
 
   def add_player(player)
     @players << player
+    @controller.update_players(@players)
   end
 
   def start
