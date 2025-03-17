@@ -5,12 +5,23 @@ class PlayerInputValidator
     correct_length = correct_length?(splitted_code.length, rules.code_length)
     valid_colors = valid_colors_used?(splitted_code, rules.color_pool)
     duplicates_check = duplicates?(rules, splitted_code)
-
-    puts "Code has wrong length, it is #{splitted_code.length} and should be #{rules.code_length}" unless correct_length
-    puts "Wrong codes used, please only #{rules.print_available_colors_short}" unless valid_colors
-    puts 'Duplicates are not accepted' if duplicates_check
+    show_wrong_length_message(splitted_code.length, rules.code_length) unless correct_length
+    show_wrong_codes_used_message(rules.print_available_colors_short) unless valid_colors
+    show_duplicates_error_message if duplicates_check
 
     correct_length && valid_colors && !duplicates_check
+  end
+
+  def self.show_duplicates_error_message
+    puts 'Duplicates are not accepted'
+  end
+
+  def self.show_wrong_codes_used_message(available_colors)
+    puts "Wrong codes used, please only #{available_colors}"
+  end
+
+  def self.show_wrong_length_message(code_length, original_code_length)
+    puts "Code has wrong length, it is #{code_length} and should be #{original_code_length}"
   end
 
   def self.duplicates?(rules, splitted_code)
@@ -26,4 +37,8 @@ class PlayerInputValidator
   def self.correct_length?(code_length, required_length)
     code_length == required_length
   end
+
+  private_class_method :show_duplicates_error_message, :show_wrong_codes_used_message,
+                       :show_wrong_length_message, :duplicates?, :valid_colors_used?,
+                       :correct_length?
 end

@@ -13,12 +13,18 @@ class Player
 
   def ask_for_code(rules)
     loop do
-      code = gets.chomp.upcase
+      code = input_code
       return code if PlayerInputValidator.validate(code, rules)
     end
   end
 
   def ask_break_code(rules)
     ask_for_code(rules)
+  end
+
+  private
+
+  def input_code
+    gets.chomp.upcase
   end
 end
