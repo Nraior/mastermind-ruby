@@ -8,16 +8,17 @@ class CodeChecker
   def self.prepare_feedback(tried_code, code)
     feedback = { correct: 0, correct_color: 0, wrong: 0 }
 
-    code.split('').each_with_index do |code_letter, index|
+    code.chars.each_with_index do |code_letter, index|
       check_code_and_update_feedback(tried_code, code_letter, index, feedback)
     end
     feedback
   end
 
   def self.check_code_and_update_feedback(player_code, code_letter, index, feedback)
+    player_code_hash = player_code.chars.tally
     if player_code[index] == code_letter
       feedback[:correct] += 1
-    elsif player_code.include?(code_letter)
+    elsif player_code_hash[code_letter]
       feedback[:correct_color] += 1
     else
       feedback[:wrong] += 1

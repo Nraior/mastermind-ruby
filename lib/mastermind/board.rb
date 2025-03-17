@@ -5,7 +5,6 @@ class Board
     @height_levels = height_levels
     @code_size = code_size
     create_new_board(height_levels, code_size)
-    @height = height_levels
   end
 
   def reset

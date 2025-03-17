@@ -1,6 +1,6 @@
 class PlayerInputValidator
   def self.validate(input, rules)
-    splitted_code = input.split('')
+    splitted_code = input.chars
 
     correct_length = correct_length?(splitted_code.length, rules.code_length)
     valid_colors = valid_colors_used?(splitted_code, rules.color_pool)

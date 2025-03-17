@@ -84,7 +84,7 @@ class GameController
     check_result = CodeChecker.check_code(code, @code)
     return end_round(@board.current_level) if check_result == true || @board.code_not_found_and_finished?
 
-    @board.update_current_level_data(code.split(''), @view.feedback(check_result))
+    @board.update_current_level_data(code.chars, @view.feedback(check_result))
     @view.clear_terminal
   end
 end
