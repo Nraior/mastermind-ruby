@@ -1,6 +1,7 @@
 require_relative 'mastermind/game'
 require_relative 'mastermind/color'
 require_relative 'mastermind/player'
+require_relative 'mastermind/computer_player'
 require_relative 'mastermind/game_rules'
 
 colors = [
@@ -13,5 +14,5 @@ rules = GameRules.basic_rules(colors)
 
 game = Game.new(rules)
 game.add_player(Player.new('Damien'))
-game.add_player(Player.new('George'))
+game.add_player(ComputerPlayer.new('George'))
 game.start

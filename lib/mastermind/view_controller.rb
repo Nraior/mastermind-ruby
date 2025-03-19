@@ -6,7 +6,7 @@ class ViewController
 
   def display_board(board)
     board.board.each_with_index do |level, index|
-      p level.join(' ') + " #{board.feedback_history[index]}"
+      p level.join(' ') + " #{feedback(board.feedback_history[index])}"
     end
     puts ''
   end
@@ -24,6 +24,8 @@ class ViewController
   end
 
   def feedback(feedback)
+    return unless feedback.is_a? Hash
+
     correct = feedback[:correct]
     correct_color = feedback[:correct_color]
     wrong = feedback[:wrong]

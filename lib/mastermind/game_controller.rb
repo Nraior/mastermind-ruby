@@ -9,7 +9,7 @@ class GameController
     @view = ViewController.new
     @playing = false
     @round_playing = false
-    @round = 0
+    @round = 1
     @code = ''
     @players = []
   end
@@ -58,7 +58,7 @@ class GameController
       @view.display_rules(@rules)
       @view.print_ask_code_maker(code_breaker.name)
       @code = code_maker.ask_for_code(@rules)
-      @view.clear_terminal
+      # @view.clear_terminal
       @view.print_code_set_message(@rules.code_length)
       @view.print_code_breaker_initial_ask(code_maker.name)
       round_loop
@@ -69,7 +69,7 @@ class GameController
     @round_playing = true
     while @round_playing
       @view.display_board(@board)
-      code_to_check = code_breaker.ask_break_code(@rules)
+      code_to_check = code_breaker.ask_break_code(@rules, @board)
       check_breaker_code(code_to_check)
     end
 
@@ -84,7 +84,7 @@ class GameController
     check_result = CodeChecker.check_code(code, @code)
     return end_round(@board.current_level) if check_result == true || @board.code_not_found_and_finished?
 
-    @board.update_current_level_data(code.chars, @view.feedback(check_result))
+    @board.update_current_level_data(code.chars, check_result)
     @view.clear_terminal
   end
 end
