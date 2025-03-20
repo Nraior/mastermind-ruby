@@ -9,7 +9,7 @@ class GameController
     @view = ViewController.new
     @playing = false
     @round_playing = false
-    @round = 1
+    @round = 0
     @code = ''
     @players = []
   end
