@@ -2,7 +2,7 @@ class GameRules
   attr_reader :code_length, :board_height, :allow_duplicates, :max_rounds, :color_pool
 
   def self.basic_rules(colors)
-    new(4, 12, false, 6, colors)
+    new(4, 12, true, 6, colors)
   end
 
   def initialize(code_length, board_height, allow_duplicates, max_rounds, colors)

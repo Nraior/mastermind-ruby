@@ -21,6 +21,18 @@ class Board
     @current_level.negative?
   end
 
+  def first_guess?
+    current_level == @height_levels
+  end
+
+  def last_guess
+    board[current_level + 1].join
+  end
+
+  def last_guess_feedback
+    feedback_history[current_level + 1]
+  end
+
   private
 
   def create_new_board(height_levels, code_size)
